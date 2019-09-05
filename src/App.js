@@ -32,7 +32,7 @@ class App extends Component {
       searchError: false
     });
 
-    const apiKey = process.env.REACT_APP_API;
+    const apiKey = process.env.REACT_APP_API_KEY;
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${this.state.searchTerm}`)
       .then(data => data.json())
       .then(data => {
@@ -50,7 +50,7 @@ class App extends Component {
   nextPage = (pageNumber) => {
     if (pageNumber < 1 || pageNumber > Math.floor(this.state.totalResults / 20) + 1) return;
 
-    const apiKey = process.env.REACT_APP_API;
+    const apiKey = process.env.REACT_APP_API_KEY;
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${this.state.searchTerm}&page=${pageNumber}`)
       .then(data => data.json())
       .then(data => {
@@ -62,7 +62,7 @@ class App extends Component {
       })
   }
   viewMovieInfo = (id) => {
-    const filteredMovie = this.state.movies.filter(movie => movie.id == id);
+    const filteredMovie = this.state.movies.filter(movie => movie.id === id);
     const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
     this.setState({
       currentMovie: newCurrentMovie
