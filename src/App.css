@@ -4,6 +4,16 @@
     max-width: 1200px;
 }
 
+.wrap {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.navbar {
+    padding: .5rem 0;
+}
+
 .search-btn {
     display: block;
     width: 100%;
