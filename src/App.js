@@ -73,7 +73,7 @@ class App extends Component {
     })
   }
   render() {
-    const numberPages = Math.floor(this.state.totalResults / 20);
+    const numberPages = Math.floor(this.state.totalResults / 20) + 1;
 
     return (
       <>

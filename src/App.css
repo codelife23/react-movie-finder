@@ -42,6 +42,9 @@ a.movie-item:hover img {
     transform: scale3d(1.1, 1.1, 1);
 }
 
+.pagination {
+    flex-wrap: wrap;
+}
 .pagination a:focus {
     box-shadow: none;
 }
