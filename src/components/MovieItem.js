@@ -10,7 +10,7 @@ const MovieItem = ({movie, viewMovieInfo}) => {
                 <span className="img">
                     <img className="img-fluid" src={img} alt={movie.original_title} />
                 </span>
-                View Details
+                {movie.original_title}
             </a>
         </div>
     )
