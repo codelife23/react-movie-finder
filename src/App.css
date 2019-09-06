@@ -19,12 +19,13 @@
     border-color: #dc3545;
 }
 
-a.movie-item {
+.movie-item {
     color: #363636;
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.25s ease 0s;
+    cursor: pointer;
 }
 .movie-item .img {
     display: block;
@@ -35,10 +36,10 @@ a.movie-item {
     transition: transform 0.25s ease 0s;
     outline: none;
 }
-a.movie-item:hover {
+.movie-item:hover {
     color: #5d2375;
 }
-a.movie-item:hover img {
+.movie-item:hover img {
     transform: scale3d(1.1, 1.1, 1);
 }
 

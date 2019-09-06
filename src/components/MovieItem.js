@@ -6,12 +6,12 @@ const MovieItem = ({movie, viewMovieInfo}) => {
     
     return (
         <div className="col-sm-6 col-md-4 col-lg-3 mt-4">
-            <a className="movie-item" href="#" onClick={() => viewMovieInfo(movie.id)}>
+            <span className="movie-item" onClick={() => viewMovieInfo(movie.id)}>
                 <span className="img">
                     <img className="img-fluid" src={img} alt={movie.original_title} />
                 </span>
                 {movie.original_title}
-            </a>
+            </span>
         </div>
     )
 }

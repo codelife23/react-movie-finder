@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import ProductConsumer from './context';
+import history from './history';
+import MainPage from './components/MainPage';
+import ListPage from './components/ListPage';
+import InfoPage from './components/InfoPage';
 import Navbar from './components/Navbar';
-import SearchArea from './components/SearchArea';
-import MovieList from './components/MovieList';
-import Pagination from './components/Pagination';
-import MovieInfo from './components/MovieInfo';
 import Footer from './components/Footer';
 
 const App = () => {
   return (
-    <ProductConsumer>
-      {value => {
-        const {currentMovie, totalResults} = value;
-        return (
-          <>
-            <Navbar />
-            <div className="wrapper py-5">
-              {currentMovie == null ? <div><SearchArea /><MovieList /></div> : <MovieInfo />}
-              {totalResults > 20 && currentMovie == null && <Pagination />}
-            </div>
-            <Footer />
-          </>
-        )
-      }}
-    </ProductConsumer>
-  );
+    <>
+      <Router history={history}>
+        <Navbar />
+        <Switch>
+          <Route path="/" component={MainPage} exact />              
+          <Route path="/list" component={ListPage} />
+          <Route path="/info" component={InfoPage} />
+        </Switch>
+        <Footer />
+      </Router>
+    </>
+  )
 }
 
 export default App;

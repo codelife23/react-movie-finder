@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <nav className="navbar navbar-dark bg-dark">
             <div className="container">
-                <a href="/" className="navbar-brand text-uppercase font-weight-bold">Movie Finder</a>
+                <Link to="/" className="navbar-brand text-uppercase font-weight-bold">Movie Finder</Link>
             </div>
         </nav>
     )

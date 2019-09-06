@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import history from './history';
 
 const ProductContext = React.createContext();
 const ProductConsumer = ProductContext.Consumer;
@@ -18,7 +19,7 @@ class ProductProvider extends Component {
         
         if (this.state.searchTerm === '') {
             this.setState({
-            searchError: true
+                searchError: true
             });
 
             return;
@@ -27,7 +28,7 @@ class ProductProvider extends Component {
         this.setState({
             searchError: false
         });
-
+        
         const apiKey = process.env.REACT_APP_API_KEY;
         fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${this.state.searchTerm}`)
             .then(data => data.json())
@@ -36,6 +37,8 @@ class ProductProvider extends Component {
                 movies: [...data.results],
                 totalResults: data.total_results,
                 numberPages: Math.floor(data.total_results / 20) + 1
+            }, () => {
+                history.push('/list');
             });
         })
     }  
@@ -62,6 +65,8 @@ class ProductProvider extends Component {
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
         this.setState({
             currentMovie: newCurrentMovie
+        }, () => {
+            history.push('/info');
         });
     }
     closeMovieInfo = () => {
