@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import queryString from 'query-string';
-import ProductConsumer from '../context';
+import { goToUrl } from '../history';
 import SearchArea from './SearchArea';
 import MovieList from './MovieList';
 import Pagination from './Pagination';
@@ -19,9 +19,13 @@ const ListPage = (props) => {
         fetch(`https://api.themoviedb.org/3/search/movie?${search}`)
             .then(data => data.json())
             .then(data => {
-                setMovies([...data.results]);
-                setPages(data.total_pages);
-                setCurrent(data.page);
+                if (data.results) {
+                    setMovies([...data.results]);
+                    setPages(data.total_pages);
+                    setCurrent(data.page);
+                } else {
+                    goToUrl('/');
+                }
         })
     }
 
