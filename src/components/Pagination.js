@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import ProductConsumer from '../context';
 
@@ -36,7 +37,7 @@ const Pagination = ({totalPages, currentPage, location}) => {
         let active = currentPage === i ? 'active' : '';
         let url = location.pathname + `?${queryString.stringify({...query, page: i})}`;
         pageLinks.push(<li className={`page-item ${active}`} key={i}>
-            <a className="page-link" href={url}>{i}</a>
+            <Link className="page-link" to={url}>{i}</Link>
         </li>)
     }
 
@@ -45,19 +46,19 @@ const Pagination = ({totalPages, currentPage, location}) => {
             <nav aria-label="Page navigation">
                 <ul className="pagination justify-content-center mt-4 mb-0">
                     <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                        <a className="page-link" href={location.pathname + `?${queryString.stringify({...query, page: 1})}`}>{'1'}</a>
+                        <Link className="page-link" to={location.pathname + `?${queryString.stringify({...query, page: 1})}`}>{'1'}</Link>
                     </li>
                     <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                        <a className="page-link" href={location.pathname + `?${queryString.stringify({...query, page: currentPage-1})}`}>{'<'}</a>
+                        <Link className="page-link" to={location.pathname + `?${queryString.stringify({...query, page: currentPage-1})}`}>{'<'}</Link>
                     </li>
                     
                     {pageLinks}
 
                     <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                        <a className="page-link" href={location.pathname + `?${queryString.stringify({...query, page: currentPage+1})}`}>{'>'}</a>
+                        <Link className="page-link" to={location.pathname + `?${queryString.stringify({...query, page: currentPage+1})}`}>{'>'}</Link>
                     </li>
                     <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                        <a className="page-link" href={location.pathname + `?${queryString.stringify({...query, page: totalPages})}`}>{totalPages}</a>
+                        <Link className="page-link" to={location.pathname + `?${queryString.stringify({...query, page: totalPages})}`}>{totalPages}</Link>
                     </li>
                 </ul>
             </nav>
