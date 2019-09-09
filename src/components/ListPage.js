@@ -15,8 +15,8 @@ const ListPage = (props) => {
     search = {...search, api_key: apiKey};
     search = queryString.stringify(search);
 
-    const fetchMovies = () => {
-        fetch(`https://api.themoviedb.org/3/search/movie?${search}`)
+    const fetchMovies = (signal) => {
+        fetch(`https://api.themoviedb.org/3/search/movie?${search}`, {signal})
             .then(data => data.json())
             .then(data => {
                 if (data.results) {
@@ -26,11 +26,15 @@ const ListPage = (props) => {
                 } else {
                     goToUrl('/');
                 }
-        })
+            });
     }
 
     useEffect(() => {
-        fetchMovies()
+        const abortController = new AbortController();
+
+        fetchMovies(abortController.signal);
+
+        return () => {abortController.abort()};
     }, [search]);
 
     return (
